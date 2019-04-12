@@ -30,6 +30,14 @@ public class BookManagerTest {
         ArrayList<Book> expectedBookList = new ArrayList<>();
         expectedBookList.add(new Book("WHO MOVED MY CHEESE", "Spencer Johnson", "1998"));
         expectedBookList.add(new Book("THE LITTLE PRINCE", "Antoine de Saint-Exupéry", "1943"));
-        assertEquals(bookManager.getBookList(), expectedBookList);
+        assertEquals(bookManager.listAllBooksDetails(), expectedBookList);
+    }
+
+    @Test
+    public void should_remove_the_book_when_the_book_is_checkouted() {
+        ArrayList<Book> expectedBookList = new ArrayList<>();
+        expectedBookList.add(new Book("WHO MOVED MY CHEESE", "Spencer Johnson", "1998"));
+        bookManager.checkoutBook("THE LITTLE PRINCE");
+        assertEquals(expectedBookList, bookManager.listAllBooksDetails());
     }
 }

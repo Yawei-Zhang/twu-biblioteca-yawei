@@ -4,23 +4,17 @@ public class Book {
     private String name;
     private String author;
     private String publishYear;
+    private boolean isAvailable;
 
     public Book(String bookName, String bookAuthor, String bookPublishYear) {
         name = bookName;
         author = bookAuthor;
         publishYear = bookPublishYear;
+        isAvailable = true;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public String getPublishYear() {
-        return publishYear;
+    public void checkOut() {
+        this.isAvailable = false;
     }
 
     @Override
@@ -41,5 +35,21 @@ public class Book {
         return book.getName() == this.name &&
                 book.getAuthor() == this.author &&
                 book.getPublishYear() == this.publishYear;
+    }
+
+    public boolean isAvailable( ) {
+        return this.isAvailable;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getPublishYear() {
+        return publishYear;
     }
 }

@@ -23,4 +23,14 @@ public class OptionManager {
     public boolean isValidOption(int id) {
         return optionList.stream().anyMatch( option -> id == option.getOptionID());
     }
+
+    public void handleOption (int id) {
+        if (isValidOption(id)) {
+            switch (id) {
+                case 0:
+                    return;
+                default:
+            }
+        }
+    }
 }
