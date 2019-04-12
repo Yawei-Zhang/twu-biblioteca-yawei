@@ -1,8 +1,8 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.models.Book;
-
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class BookManager {
 
@@ -12,17 +12,15 @@ public class BookManager {
         booklist = new ArrayList<>();
     }
 
-    public void listAllBooks() {
-        booklist.stream().forEach(book -> System.out.println(book.getName()));
+    public ArrayList<String> getAllBooksNameList() {
+        return (ArrayList<String>) this.booklist.stream().map(book -> book.getName()).collect(Collectors.toList());
     }
 
-    public void addBooks(String name, String author, String year) {
-        booklist.add(new Book(name, author, year));
+    public void addBooks(Book book) {
+        this.booklist.add(book);
     }
 
-    public void listAllBooksDetails() {
-        booklist.stream().forEach(book -> {
-            System.out.println(book.getName() + "\t" + book.getAuthor() + "\t" + book.getPublishYear());
-        });
+    public ArrayList<Book> getBookList() {
+        return this.booklist;
     }
 }
