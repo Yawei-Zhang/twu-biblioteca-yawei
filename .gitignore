@@ -6,3 +6,6 @@ build
 
 # Ignore idea
 .idea
+
+# Ignore all compile class file
+*.class

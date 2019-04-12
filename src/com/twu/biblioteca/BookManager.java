@@ -10,12 +10,14 @@ public class BookManager {
 
     public BookManager() {
         booklist = new ArrayList<>();
-        booklist.add(new Book("WHO MOVED MY CHEESE", "Spencer Johnson", "1998"));
-        booklist.add(new Book("THE LITTLE PRINCE", "Antoine de Saint-Exupéry", "1943"));
     }
 
     public void listAllBooks() {
         booklist.stream().forEach(book -> System.out.println(book.getName()));
+    }
+
+    public void addBooks(String name, String author, String year) {
+        booklist.add(new Book(name, author, year));
     }
 
     public void listAllBooksDetails() {
