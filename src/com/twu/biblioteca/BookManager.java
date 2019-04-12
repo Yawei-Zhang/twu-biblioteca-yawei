@@ -38,6 +38,7 @@ public class BookManager {
             this.booklist.stream()
                     .filter(book -> bookName == book.getName())
                     .forEach(book -> book.checkOut());
+            Printer.print("Thank you! Enjoy the Book.");
             return true;
         }
         return false;
