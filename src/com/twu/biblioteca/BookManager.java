@@ -41,6 +41,7 @@ public class BookManager {
             Printer.print("Thank you! Enjoy the Book.");
             return true;
         }
+        Printer.print("Sorry, that book is not available");
         return false;
     }
 }
