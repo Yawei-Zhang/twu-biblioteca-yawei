@@ -27,4 +27,20 @@ public class MovieManager {
         Printer.print("Name\tYear\tDirector\tRating");
         Printer.print(this.getAvailableMovie());
     }
+
+    public boolean checkoutMovie(String movieName) {
+        if (this.hasMovie(movieName)) {
+            this.movieList.stream()
+                    .filter(movie -> movieName.equals(movie.getName()))
+                    .forEach(movie -> movie.handleCheckout());
+            Printer.print("Thank you! Enjoy the Movie.");
+            return true;
+        }
+        Printer.print("Sorry, that Movie is not available");
+        return false;
+    }
+
+    private boolean hasMovie(String movieName) {
+        return this.movieList.stream().filter(movie -> movieName.equals(movie.getName())).count() != 0;
+    }
 }
