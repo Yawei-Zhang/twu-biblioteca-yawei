@@ -23,7 +23,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return this.name + "\t" + this.author + "\t" + this.publishYear;
+        return this.name + ",\t" + this.author + ",\t" + this.publishYear;
     }
 
     @Override
