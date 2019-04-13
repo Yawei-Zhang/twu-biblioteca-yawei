@@ -49,8 +49,10 @@ public class BookManager {
         Book book = this.getBookByName(bookName);
         if (book != null && !book.isAvailable()) {
             book.handleReturn();
+            System.out.println("Thank you for returning the book.");
             return true;
         }
+        System.out.println("That is not a valid book to return.");
         return false;
     }
 
