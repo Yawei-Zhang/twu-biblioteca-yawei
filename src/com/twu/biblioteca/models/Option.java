@@ -1,15 +1,15 @@
 package com.twu.biblioteca.models;
 
 public class Option {
-    private int optionID;
+    private String optionID;
     private String optionItem;
 
-    public Option(int id, String item) {
+    public Option(String id, String item) {
         optionID = id;
         optionItem = item;
     }
 
-    public int getOptionID() {
+    public String getOptionID() {
         return this.optionID;
     }
 

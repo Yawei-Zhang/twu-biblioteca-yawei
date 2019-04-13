@@ -30,13 +30,13 @@ public class BookManager {
     }
 
     public boolean hasBook(String bookName) {
-        return this.booklist.stream().filter(book -> bookName == book.getName()).count() != 0;
+        return this.booklist.stream().filter(book -> bookName.equals(book.getName())).count() != 0;
     }
 
     public boolean checkoutBook(String bookName) {
         if (this.hasBook(bookName)) {
             this.booklist.stream()
-                    .filter(book -> bookName == book.getName())
+                    .filter(book -> bookName.equals(book.getName()))
                     .forEach(book -> book.handleCheckout());
             Printer.print("Thank you! Enjoy the Book.");
             return true;
@@ -58,7 +58,10 @@ public class BookManager {
 
     public Book getBookByName (String bookName) {
         if (this.hasBook(bookName)) {
-            return this.booklist.stream().filter(book -> bookName == book.getName()).collect(Collectors.toList()).get(0);
+            return this.booklist.stream()
+                    .filter(book -> bookName.equals(book.getName()))
+                    .collect(Collectors.toList())
+                    .get(0);
         }
         return null;
     }
