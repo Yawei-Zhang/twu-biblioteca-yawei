@@ -13,8 +13,12 @@ public class Book {
         isAvailable = true;
     }
 
-    public void checkOut() {
+    public void handleCheckout() {
         this.isAvailable = false;
+    }
+
+    public void handleReturn() {
+        this.isAvailable = true;
     }
 
     @Override

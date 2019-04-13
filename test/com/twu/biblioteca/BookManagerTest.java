@@ -22,7 +22,7 @@ public class BookManagerTest {
         ArrayList<String> expectedBookList = new ArrayList<>();
         expectedBookList.add("WHO MOVED MY CHEESE");
         expectedBookList.add("THE LITTLE PRINCE");
-        assertEquals(bookManager.getAllBooksNameList(), expectedBookList);
+        assertEquals(expectedBookList, bookManager.listAllBooksName());
     }
 
     @Test
@@ -30,14 +30,24 @@ public class BookManagerTest {
         ArrayList<Book> expectedBookList = new ArrayList<>();
         expectedBookList.add(new Book("WHO MOVED MY CHEESE", "Spencer Johnson", "1998"));
         expectedBookList.add(new Book("THE LITTLE PRINCE", "Antoine de Saint-Exupéry", "1943"));
-        assertEquals(bookManager.listAllBooksDetails(), expectedBookList);
+        assertEquals(expectedBookList, bookManager.listAllBooksDetails());
     }
 
     @Test
-    public void should_remove_the_book_when_the_book_is_checkouted() {
+    public void should_mark_the_book_not_available_when_checkout_the_book() {
         ArrayList<Book> expectedBookList = new ArrayList<>();
         expectedBookList.add(new Book("WHO MOVED MY CHEESE", "Spencer Johnson", "1998"));
         bookManager.checkoutBook("THE LITTLE PRINCE");
+        assertEquals(expectedBookList, bookManager.listAllBooksDetails());
+    }
+
+    @Test
+    public void should_mark_the_book_available_when_return_the_book() {
+        ArrayList<Book> expectedBookList = new ArrayList<>();
+        expectedBookList.add(new Book("WHO MOVED MY CHEESE", "Spencer Johnson", "1998"));
+        expectedBookList.add(new Book("THE LITTLE PRINCE", "Antoine de Saint-Exupéry", "1943"));
+        bookManager.checkoutBook("THE LITTLE PRINCE");
+        bookManager.returnBook("THE LITTLE PRINCE");
         assertEquals(expectedBookList, bookManager.listAllBooksDetails());
     }
 }

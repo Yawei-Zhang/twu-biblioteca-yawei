@@ -12,7 +12,7 @@ public class BookManager {
         booklist = new ArrayList<>();
     }
 
-    public ArrayList<String> getAllBooksNameList() {
+    public ArrayList<String> listAllBooksName() {
         return (ArrayList<String>) this.booklist.stream()
                 .filter(book -> book.isAvailable())
                 .map(book -> book.getName())
@@ -37,11 +37,27 @@ public class BookManager {
         if (this.hasBook(bookName)) {
             this.booklist.stream()
                     .filter(book -> bookName == book.getName())
-                    .forEach(book -> book.checkOut());
+                    .forEach(book -> book.handleCheckout());
             Printer.print("Thank you! Enjoy the Book.");
             return true;
         }
         Printer.print("Sorry, that book is not available");
         return false;
+    }
+
+    public boolean returnBook(String bookName) {
+        Book book = this.getBookByName(bookName);
+        if (book != null && !book.isAvailable()) {
+            book.handleReturn();
+            return true;
+        }
+        return false;
+    }
+
+    public Book getBookByName (String bookName) {
+        if (this.hasBook(bookName)) {
+            return this.booklist.stream().filter(book -> bookName == book.getName()).collect(Collectors.toList()).get(0);
+        }
+        return null;
     }
 }
