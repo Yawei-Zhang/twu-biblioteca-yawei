@@ -1,6 +1,8 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.models.Book;
+import com.twu.biblioteca.models.User;
+
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
@@ -33,11 +35,12 @@ public class BookManager {
         return this.booklist.stream().filter(book -> bookName.equals(book.getName())).count() != 0;
     }
 
-    public boolean checkoutBook(String bookName) {
+    public boolean checkoutBook(String bookName, User user) {
         if (this.hasBook(bookName)) {
-            this.booklist.stream()
-                    .filter(book -> bookName.equals(book.getName()))
-                    .forEach(book -> book.handleCheckout());
+            Book book = this.getBookByName(bookName);
+            book.handleCheckout(user);
+            user.checkoutBook(book);
+
             Printer.print("Thank you! Enjoy the Book.");
             return true;
         }
@@ -45,10 +48,11 @@ public class BookManager {
         return false;
     }
 
-    public boolean returnBook(String bookName) {
+    public boolean returnBook(String bookName, User user) {
         Book book = this.getBookByName(bookName);
         if (book != null && !book.isAvailable()) {
-            book.handleReturn();
+            book.handleReturn(user);
+            user.returnBook(book);
             System.out.println("Thank you for returning the book.");
             return true;
         }
@@ -64,5 +68,9 @@ public class BookManager {
                     .get(0);
         }
         return null;
+    }
+
+    public ArrayList<Book> getBooklist() {
+        return this.booklist;
     }
 }

@@ -5,6 +5,7 @@ public class Book {
     private String author;
     private String publishYear;
     private boolean isAvailable;
+    private User checkoutUser;
 
     public Book(String bookName, String bookAuthor, String bookPublishYear) {
         name = bookName;
@@ -13,12 +14,14 @@ public class Book {
         isAvailable = true;
     }
 
-    public void handleCheckout() {
+    public void handleCheckout(User user) {
         this.isAvailable = false;
+        this.checkoutUser = user;
     }
 
-    public void handleReturn() {
+    public void handleReturn(User user) {
         this.isAvailable = true;
+        this.checkoutUser = new User();
     }
 
     @Override
@@ -55,5 +58,9 @@ public class Book {
 
     public String getPublishYear() {
         return publishYear;
+    }
+
+    public User getCheckoutUser() {
+        return checkoutUser;
     }
 }

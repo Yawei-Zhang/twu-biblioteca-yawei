@@ -1,9 +1,13 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.models.Option;
+import com.twu.biblioteca.models.User;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import static com.twu.biblioteca.BibliotecaApp.LIBRARIAN;
+import static com.twu.biblioteca.BibliotecaApp.USER;
 
 public class OptionManager {
 
@@ -32,7 +36,7 @@ public class OptionManager {
         return optionList.stream().anyMatch( option -> id.equals(option.getOptionID()));
     }
 
-    public void handleOption (String id) {
+    public void handleOption (String id, User user) {
         Scanner scanner = new Scanner(System.in);
         switch (id) {
             case "0":
@@ -43,12 +47,24 @@ public class OptionManager {
             case "2":
                 Printer.print("Please input the book name: ");
                 String bookNameCheckout = scanner.nextLine();
-                bookManager.checkoutBook(bookNameCheckout);
+                bookManager.checkoutBook(bookNameCheckout, user);
                 break;
             case "3":
                 Printer.print("Please input the book name: ");
                 String bookNameReturn = scanner.nextLine();
-                bookManager.returnBook(bookNameReturn);
+                bookManager.returnBook(bookNameReturn, user);
+                break;
+            default:
+                Printer.print("Please select a valid option!");
+        }
+    }
+
+    public void handleOption (String id, Librarian librarian) {
+        switch (id) {
+            case "0":
+                return;
+            case "1":
+                Printer.print(librarian.getAllUsersCheckoutBook());
                 break;
             default:
                 Printer.print("Please select a valid option!");
